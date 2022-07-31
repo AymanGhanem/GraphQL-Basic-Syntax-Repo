@@ -1,0 +1,27 @@
+type Show {
+    date: String!
+    name: String!
+    tickets: [Ticket!]!
+}
+
+interface Ticket {
+    id: String!
+    show: Show!
+}
+
+type VipTicket implements Ticket {
+    id: String!
+    show: Show!
+    num: Int!
+    row: Int!
+}
+
+type OrdTicket implements Ticket {
+    id: String!
+    show: Show!
+    expireAt: String!
+}
+
+type Query {
+    allShows: [Show!]!
+}

@@ -1,0 +1,45 @@
+"""Enum represents  specific values for rating movies."""
+enum Rating {
+    """Represents one star rating."""
+    ONE_STAR
+    """Represents two stars rating."""
+    TWO_STARS
+    """Represents three stars rating."""
+    THREE_STARS
+    """Represents four stars rating."""
+    FOUR_STARS
+    """Represents five stars rating."""
+    FIVE_STARS
+}
+
+"""Represents the Movie Object Type."""
+type Movie {
+    """Unique identifier for each movie."""
+    id: ID!
+    """The title of the movie."""
+    title: String!
+    """The rating of the movie."""
+    rating: Rating
+    """Determines whether the movie is available now or not."""
+    available: Boolean
+    """The actors participating in the movie."""
+    actors: [Actor!]!
+}
+
+"""Represents the Actor Object Type."""
+type Actor {
+    """Unique identifier for each actor."""
+    id: ID!
+    """The name of the actor."""
+    name: String!
+    """The movie list for an actor."""
+    movies: [Movie!]!
+}
+
+"""Query Root Type"""
+type Query {
+    """Query lets you retrieve all the movies from the database."""
+    allMovies: [Movie!]!
+    """Query lets you retrieve all the actors from the database."""
+    allActors: [Actor!]!
+}

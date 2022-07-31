@@ -1,0 +1,24 @@
+type Show {
+    date: String!
+    name: String!
+    tickets: [Ticket!]!
+}
+
+union Ticket = VipTicket | OrdTicket
+
+type VipTicket {
+    id: String!
+    show: Show!
+    num: Int!
+    row: Int!
+}
+
+type OrdTicket {
+    id: String!
+    show: Show!
+    expireAt: String!
+}
+
+type Query {
+    allShows: [Show!]!
+}

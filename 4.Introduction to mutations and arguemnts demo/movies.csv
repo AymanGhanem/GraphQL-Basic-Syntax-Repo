@@ -1,0 +1,12 @@
+,id,title,actors,available,rating
+0,mov-1,Rush Hour 1,"Jackie Chan, Chris Tucker",False,THREE_STARS
+1,mov-2,Rush Hour 2,"Jackie Chan, Chris Tucker",False,FIVE_STARS
+2,mov-3,Rush Hour 3,"Jackie Chan, Chris Tucker",True,FOUR_STARS
+3,mov-4,The Invisible Guest,"Mario Casas, Ana Wagener",True,FOUR_STARS
+4,mov-5,In Time,"Justin Timberlake, Olivia Wilde",True,FOUR_STARS
+5,mov-6,Now You See ME,"Jesse Eisenberg, Mark Ruffalo",True,ONE_STAR
+6,mov-7,The Equalizer,"Denzel Washington, Melissa Leo",True,FIVE_STARS
+7,mov-8,The Bone Collector,"Denzel Washington, Angelina Jolie",False,THREE_STARS
+8,mov-9,The Lincolyn Lawyer,"Matthew McConaughey, Ryan Phillippe",False,FIVE_STARS
+9,mov-10,Shutter Isaland,"Leonardo DiCaprio, Mark Ruffalo",True,TWO_STARS
+10,mov-11,Movie #4,"Lady Gaga , Selena Gomez",False,THREE_STARS

@@ -14,9 +14,9 @@ def resolve_ticket_interface_type(obj, *_):
     global counter
     counter += 1
     print(f"Counter == {counter}.")
-    if(obj.get('expire_at', None)):
+    if("*ord" in obj.get('id', None)):
         return "OrdTicket"
-    elif(obj.get('num', None) or obj.get('row', None)):
+    elif("*vip*" in obj.get('id', None)):
         return "VipTicket"
 
 @query.field("allShows")
@@ -50,7 +50,7 @@ async def resolve_tickets(obj, info):
     objects = []
     for ticket in tickets_list:
         obj = ticket.split('*')
-        if( random.random()> 0.5):
+        if("*ord*" in ticket):
             ticket_obj = {
                 "id": ticket,
                 "expire_at": f"{random.randint(1,28)}-{random.randint(1,12)}-{random.randint(2024,2026)}"

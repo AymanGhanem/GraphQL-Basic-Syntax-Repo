@@ -13,13 +13,15 @@ ord_ticket = ObjectType("OrdTicket")
 
 @ticket_union.type_resolver
 def resolve_ticket_union_type(obj, *_):
-    # print("------------------interface type resolver------------------------")
+    print("------------------union type resolver------------------------")
     global counter
     counter += 1
-    print(f"Counter == {counter}.")
-    if(obj.get('expire_at', None)):
+    # print(f"Counter == {counter}.")
+    if("*ord*" in obj.get('id', None)):
+        print("Ord")
         return "OrdTicket"
-    elif(obj.get('num', None) or obj.get('row', None)):
+    elif("*vip*" in obj.get('id', None)):
+        print("Vip")
         return "VipTicket"
 
 @query.field("allShows")
@@ -28,7 +30,7 @@ async def resolve_all_shows(obj, info):
     print("-------------All Shows Query------------------")
     global counter
     counter = 1
-    print(f"Counter == {counter}.")
+    # print(f"Counter == {counter}.")
     shows_list = []
     for index, value in shows_table.iterrows():
         obj = {
@@ -45,7 +47,7 @@ async def resolve_tickets(obj, info):
     global counter
     tickets_list = []
     counter += 1
-    print(f"Counter == {counter}.")
+    # print(f"Counter == {counter}.")
     tickets_rows = shows_table[shows_table['names'] == obj['name']]
     for index, row in tickets_rows.iterrows():
         ticket_string = row.iloc[2]
@@ -53,7 +55,7 @@ async def resolve_tickets(obj, info):
     objects = []
     for ticket in tickets_list:
         obj = ticket.split('*')
-        if( random.random()> 0.5):
+        if( "*ord*" in ticket):
             ticket_obj = {
                 "id": ticket,
                 "expire_at": f"{random.randint(1,28)}-{random.randint(1,12)}-{random.randint(2024,2026)}"
@@ -71,19 +73,23 @@ async def resolve_tickets(obj, info):
 @vip_ticket.field("show")
 @convert_kwargs_to_snake_case
 async def resolve_vip_tickets(obj, info):
-    print("-------------show field resolver------------------")
+    print("-------------show field resolver - vip ticket------------------")
+    print(obj)
+    print(info)
     global counter
     counter += 1
-    print(f"Counter == {counter}.")
+    # print(f"Counter == {counter}.")
     parts_obj = obj['id'].split("*")
     return {'name': parts_obj[0], 'date': parts_obj[2]}
 
 @ord_ticket.field("show")
 @convert_kwargs_to_snake_case
 async def resolve_ord_tickets(obj, info):
-    print("-------------show field resolver------------------")
+    print("-------------show field resolver - ord ticket------------------")
+    print(obj)
+    print(info)
     global counter
     counter += 1
-    print(f"Counter == {counter}.")
+    # print(f"Counter == {counter}.")
     parts_obj = obj['id'].split("*")
     return {'name': parts_obj[0], 'date': parts_obj[2]}
